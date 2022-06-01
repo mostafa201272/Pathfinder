@@ -60,7 +60,7 @@ const DeletePro = ({
             (async () => {
                 await axios({
                     method: "DELETE",
-                    url: `https://pathfinder-v1.herokuapp.com/maps/user/delete/${delUserIndex}/`,
+                    url: `http://127.0.0.1:8000/maps/user/delete/${delUserIndex}/`,
                     headers: { Authorization: `Token ${token}` },
                 })
                     .then((res) => {

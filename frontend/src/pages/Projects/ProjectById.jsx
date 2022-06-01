@@ -77,7 +77,7 @@ const Project = () => {
             setLoadingTable(true);
             await axios
                 .get(
-                    `https://pathfinder-v1.herokuapp.com/maps/project/${id}/data/poisonous/`,
+                    `http://127.0.0.1:8000/maps/project/${id}/data/poisonous/`,
                     { headers: { Authorization: `Token ${token}` } }
                 )
                 .then((res) => {

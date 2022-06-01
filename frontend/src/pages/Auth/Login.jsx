@@ -64,14 +64,14 @@ const Login = () => {
         // Request to get user info
         await axios
             .post(
-                "http://127.0.0.1/maps/login/",
+                "http://127.0.0.1:8000/maps/login/",
                 userInfo
             )
             .then(({ data }) => {
                 // request to get user token
                 axios
                     .post(
-                        "https://pathfinder-v1.herokuapp.com/auth/",
+                        "http://127.0.0.1:8000/auth/",
                         userInfo
                     )
                     .then((res) => {

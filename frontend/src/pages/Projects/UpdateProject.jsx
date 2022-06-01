@@ -61,7 +61,7 @@ function UpdateRobot() {
         }
         (async () => {
             await axios
-                .get("https://pathfinder-v1.herokuapp.com/maps/robots/", {
+                .get("http://127.0.0.1:8000/maps/robots/", {
                     headers: { Authorization: `Token ${token}` },
                 })
                 .then((res) => {
@@ -80,7 +80,7 @@ function UpdateRobot() {
         (async () => {
             await axios
                 .get(
-                    `https://pathfinder-v1.herokuapp.com/maps/project/${id}/`,
+                    `http://127.0.0.1:8000/maps/project/${id}/`,
                     {
                         headers: { Authorization: `Token ${token}` },
                     }
@@ -124,7 +124,7 @@ function UpdateRobot() {
                                 (async () => {
                                     await axios({
                                         method: "PATCH",
-                                        url: `https://pathfinder-v1.herokuapp.com/maps/project/update/${id}/`,
+                                        url: `http://127.0.0.1:8000/maps/project/update/${id}/`,
                                         headers: {
                                             Authorization: `Token ${token}`,
                                         },

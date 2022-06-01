@@ -81,7 +81,7 @@ function Resgister() {
             // Request to create a new user
             await axios
                 .post(
-                    "https://pathfinder-v1.herokuapp.com/maps/register/",
+                    "http://127.0.0.1:8000/maps/register/",
                     {
                         first_name: `${userReg.first_name}`,
                         last_name: `${userReg.last_name}`,

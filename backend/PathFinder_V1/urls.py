@@ -30,7 +30,7 @@ from maps.views import lobby
 class BothHttpAndHttpsSchemaGenerator(OpenAPISchemaGenerator):
     def get_schema(self, request=None, public=False):
         schema = super().get_schema(request, public)
-        schema.schemes = ["https",] #"http", 
+        schema.schemes = ["https","http"] #"http", 
         return schema
 
 schema_view = get_schema_view(
@@ -55,7 +55,7 @@ urlpatterns = [
     path('lobby/', lobby),
 
     path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swigger_schema/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

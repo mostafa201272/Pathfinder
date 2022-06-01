@@ -167,7 +167,12 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF_COOKIE_HTTPONLY = False
 SESSION_COOKIE_HTTPONLY = False
 
-CSRF_TRUSTED_ORIGINS=['https://pathfinder-v1.herokuapp.com', 'http://pathfinder-v1.herokuapp.com','http://127.0.0.1/'] #, 'http://localhost:3000'
+CSRF_TRUSTED_ORIGINS=[
+    'https://pathfinder-v1.herokuapp.com', 
+    'http://pathfinder-v1.herokuapp.com',
+    'http://127.0.0.1/', 
+    'http://127.0.0.1:8000/', 
+    'http://127.0.0.1:3000/'] #, 'http://localhost:3000'
 
 
 

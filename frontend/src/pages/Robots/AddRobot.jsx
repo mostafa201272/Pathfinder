@@ -18,7 +18,7 @@ const AddRobot = ({ layouts, setLayouts, Robots, setRobots }) => {
         e.preventDefault();
         (async function () {
             await axios({
-                url: "https://pathfinder-v1.herokuapp.com/maps/robot/create/",
+                url: "http://127.0.0.1:8000/maps/robot/create/",
                 method: "POST",
                 headers: { Authorization: `Token ${token}` },
                 data: {

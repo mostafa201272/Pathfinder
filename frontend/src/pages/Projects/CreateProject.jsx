@@ -26,7 +26,7 @@ const CreateProject = ({ layouts, setLayouts, projects, setProjects }) => {
         }
         (async () => {
             await axios
-                .get("https://pathfinder-v1.herokuapp.com/maps/robots/", {
+                .get("http://127.0.0.1:8000/maps/robots/", {
                     headers: { Authorization: `Token ${token}` },
                 })
                 .then((res) => {

@@ -35,7 +35,7 @@ function Admin({ layouts, setLayouts }) {
         setLoading(true);
         (async () => {
             await axios
-                .get("https://pathfinder-v1.herokuapp.com/maps/users/", {
+                .get("http://127.0.0.1:8000/maps/users/", {
                     headers: { Authorization: `Token ${token}` },
                 })
                 .then((res) => {

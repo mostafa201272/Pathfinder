@@ -60,7 +60,7 @@ const DeleteRob = ({
             (async () => {
                 await axios({
                     method: "DELETE",
-                    url: `https://pathfinder-v1.herokuapp.com/maps/robot/delete/${delRoboIndex}/`,
+                    url: `http://127.0.0.1:8000/maps/robot/delete/${delRoboIndex}/`,
                     headers: { Authorization: `Token ${token}` },
                 })
                     .then((res) => {

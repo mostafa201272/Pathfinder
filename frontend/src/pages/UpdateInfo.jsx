@@ -112,7 +112,7 @@ function UpdateUserInfo() {
                             (async () => {
                                 await axios({
                                     method: "PATCH",
-                                    url: `https://pathfinder-v1.herokuapp.com/maps/user/update/${id}/`,
+                                    url: `http://127.0.0.1:8000/maps/user/update/${id}/`,
                                     headers: {
                                         Authorization: `Token ${token}`,
                                     },

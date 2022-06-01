@@ -47,7 +47,7 @@ function Home({ layouts, setLayouts, Robots }) {
         setLoading(true);
         (async () => {
             await axios
-                .get(`https://pathfinder-v1.herokuapp.com/maps/projects/`, {
+                .get(`http://127.0.0.1:8000/maps/projects/`, {
                     headers: { Authorization: `Token ${token}` },
                 })
                 .then((res) => {
