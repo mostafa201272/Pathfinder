@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t%ukf#*inkshh%c6r$smsrub*(0yr5k*crk0vkv((+e)ueu5xz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['pathfinder-v1.herokuapp.com', '127.0.0.1', 'localhost']
 
@@ -73,7 +73,7 @@ ROOT_URLCONF = 'PathFinder_V1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR), 'build'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,19 +95,6 @@ CHANNEL_LAYERS = {
 }
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'pathfinder_db', 
-#         'USER': 'postgres', 
-#         'PASSWORD': '9999DB7777tn',
-#         'HOST': 'database-1.cub96gg2jujd.us-east-1.rds.amazonaws.com', 
-#         'PORT': '5432',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -115,9 +102,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -155,22 +139,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'build/static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Set up media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-# ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_COOKIE_SAMESITE = 'Lax'
@@ -184,13 +167,7 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF_COOKIE_HTTPONLY = False
 SESSION_COOKIE_HTTPONLY = False
 
-CSRF_TRUSTED_ORIGINS=['https://pathfinder-v1.herokuapp.com', 'http://pathfinder-v1.herokuapp.com'] #, 'http://localhost:3000'
+CSRF_TRUSTED_ORIGINS=['https://pathfinder-v1.herokuapp.com', 'http://pathfinder-v1.herokuapp.com','http://127.0.0.1/'] #, 'http://localhost:3000'
 
 
 
-AWS_ACCESS_KEY_ID = 'AKIAWDJFU4MXUUIQJDEJ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'pathfinder-bucket'
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

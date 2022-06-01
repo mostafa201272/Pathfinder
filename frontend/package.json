@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='/home/mostafa/PycharmProjects/Git_Hub_Projects/Pathfinder/backend/build/' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
