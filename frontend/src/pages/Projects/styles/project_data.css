@@ -1,0 +1,109 @@
+.project_data__container{
+    background: hsl(250.4, 79.3%, 5.7%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.project_data__container__ROW{
+    display: flex!important;
+    align-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Header */
+.project_data__container__header{
+    color: #fff;
+    margin-bottom: 20px;
+    width: 70%;
+}
+
+.project_data__container__header_h1{
+    color: #d3a42e;
+    text-align: left;
+}
+
+.project_data__container_camera_view{
+    width: 100%;
+    background: #1d2e4c;
+    padding: 7px;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.project_data__container_camera_view__tail{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translate(-50%, -3%) rotateZ(180deg);
+    border-left: 15px solid transparent;
+    border-right:15px solid transparent;
+    border-bottom:15px solid #1d2e4c;
+}
+
+.project_data__container_camera_view__controls{
+
+    width: 100%;
+    background: #1d2e4c;
+    border-radius: 5px;
+    height: 42px;
+    display: flex;
+    padding: 7px;
+}
+
+.project_data__container_camera_view__controls_container{
+
+    background: #0c1824;
+    font-weight: 600;
+    border-radius: 3px;
+    margin: auto;
+    padding: 5px 10px 5px;
+    text-align: center;
+    font-size: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.project_data__container_missin_data{
+    align-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.project_data__map{
+    flex: 2;
+    min-height: 100%;
+    width: 100%;
+    background: #1d2e4c;
+    padding: 9px;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.project_data__map__AI_button{
+    padding: 20px 24px;
+    right: 0px;
+    bottom: 0px;
+    background: #1d2e4c;
+}
+
+.project_data__map__joystick{
+
+    position: absolute;
+    left: calc(50% - 50px);
+    bottom: -30px;
+}
+
+.project_data__map__joystick button{
+    border: 2px solid rgb(255, 255, 255) !important;
+}

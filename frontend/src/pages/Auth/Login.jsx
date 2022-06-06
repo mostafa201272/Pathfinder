@@ -75,6 +75,7 @@ const Login = () => {
                         userInfo
                     )
                     .then((res) => {
+                        console.log("[+] Request Sended");
                         setisLoading(false);
                         localStorage.setItem(
                             "UserLogin",
@@ -87,6 +88,7 @@ const Login = () => {
                         navigate("/");
                     })
                     .catch((err) => {
+                        console.log(err);
                         toast.error(err.message);
                     });
                 setisLoading(false);

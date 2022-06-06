@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 // Bootstrap
 import { Form, Button, Card } from "react-bootstrap";
+import "./styles/project_data.css"
 
 // Get Robots data from globar
 import { robotsGl } from "../../App";
@@ -44,7 +45,7 @@ const CreateProject = ({ layouts, setLayouts, projects, setProjects }) => {
         e.preventDefault();
         (async function () {
             await axios({
-                url: "https://pathfinder-v1.herokuapp.com/maps/project/create/",
+                url: "http://127.0.0.1:8000/maps/project/create/",
                 method: "POST",
                 headers: { Authorization: `Token ${token}` },
                 data: {
@@ -56,6 +57,7 @@ const CreateProject = ({ layouts, setLayouts, projects, setProjects }) => {
             })
                 .then((res) => {
                     const { data: Data } = res;
+                    console.log(res);
                     toast.success(`Project ${Data.project_name} is added`);
                     setProjects([Data, ...projects]);
                 })

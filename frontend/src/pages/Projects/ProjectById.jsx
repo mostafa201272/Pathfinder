@@ -25,6 +25,7 @@ import redDot from "../../images/redDot.svg";
 import play from "../../images/play.svg";
 import backArrow from "../../images/backArrow.svg";
 import forwardArrow from "../../images/forwardArrow.svg";
+import { Joystick } from 'react-joystick-component';
 // ***********************************************************
 
 const Project = () => {
@@ -91,27 +92,23 @@ const Project = () => {
                 });
         })();
     }, [token, id]);
+    
     return (
         <>
             <Navbar />
-            <Container
-                fluid
-                style={{
-                    background: "hsl(250.4, 79.3%, 5.7%)",
-                    minHeight: "100vh",
-                    padding: "20px",
-                }}
-            >
-                <Row className="d-flex">
+            <Container className="project_data__container" fluid>
+                <Row className="project_data__container__ROW">
                     {loading ? (
                         <h2>loading...</h2>
                     ) : (
                         <>
-                            <Col style={{ flex: "1" }}>
+
+                            {/* START SENSORS SIDE */}
+                            <Col md={4} style={{ flex: "1" }}>
+                                
+                                {/* START Header */}
                                 <Col>
-                                    <h2 style={{ color: "#d3a42e" }}>
-                                        PATHFINDER-SC0
-                                    </h2>
+                                    <h2 className="project_data__container__header_h1"> PATHFINDER-SC0</h2>
                                 </Col>
                                 <Col className="d-flex justify-content-stretch">
                                     <h5
@@ -126,167 +123,70 @@ const Project = () => {
                                         project {project[0]?.project}
                                     </h6>
                                 </Col>
-                                {/* charts */}
+                                {/* END Header */}
+
+                                {/* START SENSOR CHARTS */}
                                 <Col className="d-flex justify-content-between">
-                                    <ProjectSliders
-                                        name={"Temperature"}
-                                        value={`${65}`}
-                                        start={-25}
-                                        end={45}
-                                    />
-                                    <ProjectSliders
-                                        name={"Humidity"}
-                                        value={35}
-                                        start={-25}
-                                        end={45}
-                                    />
-                                    <ProjectSliders
-                                        name={"Gas"}
-                                        value={43}
-                                        start={0}
-                                        end={70}
-                                    />
+                                    <ProjectSliders name={"Temperature"} value={`${-10}`} start={-25} end={45} />
+                                    <ProjectSliders name={"Humidity"} value={15} start={-25} end={45} />
+                                    <ProjectSliders name={"Gas"} value={10} start={0} end={70}/>
                                 </Col>
+                                {/* END SENSOR CHARTS */}
                             </Col>
-                            {/* robot two images */}
-                            <Row style={{ flex: "2", minWidth: "400px" }}>
-                                {/* robot left */}
-                                <Col className="d-flex flex-column w-100">
-                                    {/* Robot Images */}
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            background: "#1d2e4c",
-                                            padding: "7px",
-                                            borderRadius: "12px",
-                                            position: "relative",
-                                            display: "flex",
-                                            marginBottom: "12px",
-                                        }}
-                                    >
-                                        <span
-                                            style={{
-                                                width: "10px",
-                                                height: "10px",
-                                                position: "absolute",
-                                                left: "50%",
-                                                bottom: "-7%",
-                                                transform:
-                                                    "translate(-50%, -3%) rotateZ(180deg)",
-                                                borderLeft:
-                                                    "15px solid transparent",
-                                                borderRight:
-                                                    "15px solid transparent",
-                                                borderBottom:
-                                                    "15px solid #1d2e4c",
-                                            }}
-                                        ></span>
-                                        <img
-                                            src={robot2}
-                                            className="w-100"
-                                            alt=""
-                                        />
-                                    </div>
-                                    {/* Robot  Contols */}
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            background: "#1d2e4c",
-                                            borderRadius: "5px",
-                                            height: "42px",
-                                            display: "flex",
-                                            padding: "7px",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                background: "#0c1824",
-                                                fontWeight: "600",
-                                                borderRadius: "3px",
-                                                margin: "auto",
-                                                padding: "5px 10px 5px",
-                                                textAlign: "center",
-                                                fontSize: "65%",
-                                                width: "100%",
-                                                display: "flex",
-                                                justifyContent: "space-around",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={redDot}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={backArrow}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={play}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={forwardArrow}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={show}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={resize}
-                                                />
-                                            </span>
+                            {/* END SENSORS SIDE */}
+
+                            
+                            {/* START ROBOT CAMERA VIEWS */}
+                            <Col md={4}>
+                                <Row>
+                                    
+                                    {/* LEFT CAMERA and LEFT TASKS */}
+                                    <Col className="d-flex flex-column w-100">
+                                        {/* Robot Images */}
+                                        <div className="project_data__container_camera_view">
+                                            <span className="project_data__container_camera_view__tail"></span>
+                                            <img src={robot2} className="w-100" alt=""/>
                                         </div>
-                                    </div>
-                                    {/* Robot Data */}
-                                    <div className="d-flex flex-column justify-content-between pt-4 h-100">
-                                        <div>
-                                            <span>Control</span>
-                                            <h4
-                                                style={{
-                                                    color: "green",
-                                                    fontWeight: "600",
-                                                    fontSize: "100%",
-                                                }}
+                                        {/* Robot  Contols */}
+                                        <div className="project_data__container_camera_view__controls">
+                                            <div className="project_data__container_camera_view__controls_container"
                                             >
-                                                {project[0]?.control_type}
-                                            </h4>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={redDot} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={backArrow} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={play}/>
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={forwardArrow} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={show} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={resize} />
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span>Date</span>
-                                            <h4
-                                                style={{
-                                                    color: "red",
-                                                    fontSize: "100%",
-                                                }}
-                                            >
-                                                {project[0]?.time_collected
-                                                    ?.toString()
-                                                    ?.slice(0, 10)}
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <span>Time</span>
-                                            {project[0]?.time_collected && (
+                                        {/* Robot Data */}
+                                        <div className="project_data__container_missin_data d-flex flex-column justify-content-between pt-4 h-100">
+                                            <div>
+                                                <span>Control</span>
+                                                <h4
+                                                    style={{
+                                                        color: "green",
+                                                        fontWeight: "600",
+                                                        fontSize: "100%",
+                                                    }}
+                                                >
+                                                    {project[0]?.control_type}
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <span>Date</span>
                                                 <h4
                                                     style={{
                                                         color: "red",
@@ -295,331 +195,167 @@ const Project = () => {
                                                 >
                                                     {project[0]?.time_collected
                                                         ?.toString()
-                                                        ?.slice(11, 13) > 12
-                                                        ? `0${
-                                                              project[0]?.time_collected
-                                                                  ?.toString()
-                                                                  ?.slice(
-                                                                      11,
-                                                                      13
-                                                                  ) - 12
-                                                          }`
-                                                        : project[0]?.time_collected
-                                                              ?.toString()
-                                                              ?.slice(
-                                                                  11,
-                                                                  13
-                                                              )}{" "}
-                                                    {project[0]?.time_collected
-                                                        ?.toString()
-                                                        ?.slice(13, 16)}{" "}
-                                                    {project[0]?.time_collected
-                                                        .toString()
-                                                        .slice(11, 13) < 12
-                                                        ? "AM"
-                                                        : "PM"}
+                                                        ?.slice(0, 10)}
                                                 </h4>
-                                            )}
-                                        </div>
-                                        <div>
-                                            <span>Mission Time</span>
-                                            <h4
-                                                style={{
-                                                    color: "red",
-                                                    fontSize: "100%",
-                                                    margin: "0",
-                                                }}
-                                            >
-                                                {project[0]?.time_collected.slice(
-                                                    0,
-                                                    10
+                                            </div>
+                                            <div>
+                                                <span>Time</span>
+                                                {project[0]?.time_collected && (
+                                                    <h4
+                                                        style={{
+                                                            color: "red",
+                                                            fontSize: "100%",
+                                                        }}
+                                                    >
+                                                        {project[0]?.time_collected
+                                                            ?.toString()
+                                                            ?.slice(11, 13) > 12
+                                                            ? `0${
+                                                                project[0]?.time_collected
+                                                                    ?.toString()
+                                                                    ?.slice(
+                                                                        11,
+                                                                        13
+                                                                    ) - 12
+                                                            }`
+                                                            : project[0]?.time_collected
+                                                                ?.toString()
+                                                                ?.slice(
+                                                                    11,
+                                                                    13
+                                                                )}{" "}
+                                                        {project[0]?.time_collected
+                                                            ?.toString()
+                                                            ?.slice(13, 16)}{" "}
+                                                        {project[0]?.time_collected
+                                                            .toString()
+                                                            .slice(11, 13) < 12
+                                                            ? "AM"
+                                                            : "PM"}
+                                                    </h4>
                                                 )}
-                                            </h4>
+                                            </div>
+                                            <div>
+                                                <span>Mission Time</span>
+                                                <h4
+                                                    style={{
+                                                        color: "red",
+                                                        fontSize: "100%",
+                                                        margin: "0",
+                                                    }}
+                                                >
+                                                    {project[0]?.time_collected.slice(
+                                                        0,
+                                                        10
+                                                    )}
+                                                </h4>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Col>
-                                {/* robot right */}
-                                <Col className="d-flex flex-column w-100">
-                                    {/* Robot Image */}
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            background: "#1d2e4c",
-                                            padding: "7px",
-                                            borderRadius: "12px",
-                                            position: "relative",
-                                            display: "flex",
-                                            marginBottom: "12px",
-                                        }}
-                                    >
-                                        <span
-                                            style={{
-                                                width: "10px",
-                                                height: "10px",
-                                                position: "absolute",
-                                                left: "50%",
-                                                bottom: "-7%",
-                                                transform:
-                                                    "translate(-50%, -3%) rotateZ(180deg)",
-                                                borderLeft:
-                                                    "15px solid transparent",
-                                                borderRight:
-                                                    "15px solid transparent",
-                                                borderBottom:
-                                                    "15px solid #1d2e4c",
-                                            }}
-                                        ></span>
-                                        <img
-                                            src={robot2}
-                                            className="w-100"
-                                            alt=""
-                                        />
-                                    </div>
-                                    {/* Robot Controls */}
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            background: "#1d2e4c",
-                                            borderRadius: "5px",
-                                            height: "42px",
-                                            display: "flex",
-                                            padding: "7px",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                background: "#0c1824",
-                                                fontWeight: "600",
-                                                borderRadius: "3px",
-                                                margin: "auto",
-                                                padding: "5px 10px 5px",
-                                                textAlign: "center",
-                                                fontSize: "65%",
-                                                width: "100%",
-                                                display: "flex",
-                                                justifyContent: "space-around",
-                                                alignItems: "center",
-                                            }}
-                                        >
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={redDot}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={backArrow}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={play}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={forwardArrow}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={show}
-                                                />
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    style={{ width: "15px" }}
-                                                    src={resize}
-                                                />
-                                            </span>
+                                    </Col>
+                                    
+                                    {/* robot right */}
+                                    <Col className="d-flex flex-column w-100">
+                                        
+                                        {/* Robot Images */}
+                                        <div className="project_data__container_camera_view">
+                                            <span className="project_data__container_camera_view__tail"></span>
+                                            <img src={robot2} className="w-100" alt=""/>
                                         </div>
-                                    </div>
-                                    {/* Robot Data */}
-                                    <div className="d-flex flex-column justify-content-between pt-4 h-100">
-                                        <div>
-                                            <span>Robot IP</span>
-                                            <h4
-                                                style={{
-                                                    color: "green",
-                                                    fontSize: "100%",
-                                                }}
+                                        {/* Robot  Contols */}
+                                        <div className="project_data__container_camera_view__controls">
+                                            <div className="project_data__container_camera_view__controls_container"
                                             >
-                                                {project?.robot?.ip_address}
-                                            </h4>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={redDot} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={backArrow} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={play}/>
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={forwardArrow} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={show} />
+                                                </span>
+                                                <span>
+                                                    <img alt="" style={{ width: "15px" }} src={resize} />
+                                                </span>
+                                            </div>
+                                        </div>                
+
+                                        {/* Robot Data */}
+                                        <div className="project_data__container_missin_data d-flex flex-column justify-content-between pt-4 h-100">
+                                            <div>
+                                                <span>Robot IP</span>
+                                                <h4
+                                                    style={{
+                                                        color: "green",
+                                                        fontSize: "100%",
+                                                    }}
+                                                >
+                                                    {project?.robot?.ip_address}
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <span>X-Position</span>
+                                                <h4
+                                                    style={{
+                                                        color: "red",
+                                                        fontSize: "100%",
+                                                    }}
+                                                >
+                                                    {project[0]?.x_position}
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <span>Y-Position</span>
+                                                <h4
+                                                    style={{
+                                                        color: "red",
+                                                        fontSize: "100%",
+                                                    }}
+                                                >
+                                                    {project[0]?.y_position}
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <span>Speed</span>
+                                                <h4
+                                                    style={{
+                                                        color: "red",
+                                                        fontSize: "100%",
+                                                        margin: "0",
+                                                    }}
+                                                >
+                                                    {project[0]?.speed} m/s
+                                                </h4>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span>X-Position</span>
-                                            <h4
-                                                style={{
-                                                    color: "red",
-                                                    fontSize: "100%",
-                                                }}
-                                            >
-                                                {project[0]?.x_position}
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <span>Y-Position</span>
-                                            <h4
-                                                style={{
-                                                    color: "red",
-                                                    fontSize: "100%",
-                                                }}
-                                            >
-                                                {project[0]?.y_position}
-                                            </h4>
-                                        </div>
-                                        <div>
-                                            <span>Speed</span>
-                                            <h4
-                                                style={{
-                                                    color: "red",
-                                                    fontSize: "100%",
-                                                    margin: "0",
-                                                }}
-                                            >
-                                                {project[0]?.speed} m/s
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
+                                    </Col>
+                                </Row>
+                            </Col>
 
                             {/* map image */}
-                            <Col
-                                style={{
-                                    flex: "2",
-                                    minHeight: "100%",
-                                    width: "100%",
-                                    background: "#1d2e4c",
-                                    padding: "9px",
-                                    borderRadius: "12px",
-                                    position: "relative",
-                                    display: "flex",
-                                    marginBottom: "12px",
-                                }}
-                            >
-                                {/* Right button  Ai */}
-                                <Button
-                                    onClick={() => console.log("Right button")}
-                                    className={
-                                        "d-flex justify-content-center align-items-center position-absolute rounded-circle text-white fw-bold border-0"
-                                    }
-                                    style={{
-                                        padding: "10px 15px",
-                                        right: "5px",
-                                        bottom: "5px",
-                                        background: "#1d2e4c",
-                                    }}
-                                >
-                                    Ai
+                            <Col md={4} className="project_data__map" >
+                                {/* AI BUTTON */}
+                                <Button onClick={() => console.log("Right button")} className= "project_data__map__AI_button d-flex justify-content-center align-items-center position-absolute rounded-circle text-white fw-bold border-0">
+                                    AI
                                 </Button>
-                                {/* Left button Pe */}
-                                <Button
-                                    onClick={() => console.log("left button")}
-                                    className={
-                                        "d-flex justify-content-center align-items-center position-absolute rounded-circle text-white fw-bold border-0"
-                                    }
-                                    style={{
-                                        padding: "10px 15px",
-                                        left: "5px",
-                                        bottom: "5px",
-                                        background: "#1d2e4c",
-                                    }}
-                                >
-                                    Pe
-                                </Button>
-
-                                {/* Center Buttons */}
-                                <div
-                                    style={{
-                                        width: "100px",
-                                        height: "80px",
-                                        position: "absolute",
-                                        left: "50%",
-                                        bottom: "10px",
-                                        transform: "translateX(-50%)",
-                                        background: "#1d2e4c",
-                                        borderRadius: "5px",
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            position: "relative",
-                                            width: "100%",
-                                            height: "100%",
-                                            left: "0px",
-                                            right: "0px",
-                                            color: "#FFF",
-                                            background: "#1d2e4c",
-                                            padding: "0px",
-                                        }}
-                                    >
-                                        {/* Top Button */}
-                                        <TopAndBottom
-                                            onClick={() => console.log("Top")}
-                                            position={"top"}
-                                            ArrowDir={
-                                                "transparent transparent #FFF transparent"
-                                            }
-                                        />
-                                        {/* Bottom Button */}
-                                        <TopAndBottom
-                                            onClick={() =>
-                                                console.log("Bottom")
-                                            }
-                                            position={"bottom"}
-                                            ArrowDir={
-                                                "#FFF transparent transparent transparent"
-                                            }
-                                        />
-                                        {/* Center Button */}
-                                        <Button
-                                            onClick={() =>
-                                                console.log("Center Btn")
-                                            }
-                                            style={{
-                                                position: "absolute",
-                                                border: "none",
-                                                width: "20px",
-                                                height: "20px",
-                                                left: "50%",
-                                                top: "50%",
-                                                transform:
-                                                    "translate(-50%,-50%)",
-                                                background: "#FFF",
-                                            }}
-                                        ></Button>
-                                        {/* Right Button */}
-                                        <LeftAndRight
-                                            onClick={() => console.log("Right")}
-                                            position={"right"}
-                                            ArrowDir={
-                                                "transparent transparent  transparent #FFF"
-                                            }
-                                        />
-                                        {/* Left Button */}
-                                        <LeftAndRight
-                                            onClick={() => console.log("Left")}
-                                            position={"left"}
-                                            ArrowDir={
-                                                "transparent #FFF transparent transparent"
-                                            }
-                                        />
-                                    </div>
+                                {/* END AI BUTTON */}
+                                
+                                
+                                {/* JOY STICK */}
+                                <div className="project_data__map__joystick">
+                                    <Joystick size={100} sticky={false} baseColor="#1d2e4c" stickColor="#0c1824" ></Joystick>
                                 </div>
+                                {/* END STICK */}
+
+                                
                                 <img
+                                    id="map"
                                     alt=""
                                     className="h-100 w-100"
                                     style={{
