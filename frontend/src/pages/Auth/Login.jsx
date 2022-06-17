@@ -122,7 +122,7 @@ const Login = () => {
                     </div>
 
                     {/* Form Section */}
-                    <Form autoComplete={false} className="login_form_side__form" onSubmit={formSubmit}>
+                    <Form autoComplete="false" className="login_form_side__form" onSubmit={formSubmit}>
 
                         {/* START OF Inputs */}
                         <div className="login__form_inputes">

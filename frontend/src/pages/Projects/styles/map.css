@@ -1,0 +1,8 @@
+.map_canvace_container,
+.map_canvace_container .map_canvas,
+.map_canvace_container .map_canvas canvas{
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px;
+}
+

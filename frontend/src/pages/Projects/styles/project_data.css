@@ -78,6 +78,18 @@
     align-items: flex-start !important;
 }
 
+.project_data__container_missin_data > div{
+    text-align: left;
+}
+
+.project_data__container_missin_data > div span{
+    font-size: 14px;
+}
+
+.project_data__container_missin_data > div h4{
+    font-size: 24px;
+}
+
 .project_data__map{
     flex: 2;
     min-height: 100%;
@@ -96,6 +108,37 @@
     bottom: 0px;
     background: #1d2e4c;
 }
+.project_data__map__AI_button:hover{
+    background-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem #dc35459c;
+}
+
+.project_data__map__AI_button:active{
+    background-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem #dc35459c;
+}
+
+.project_data__map__AI_button:focus{
+    background-color: #1d2e4c;
+    box-shadow: 0 0 0 0.25rem #1d2e4c85;;
+}
+
+
+.ai_activate{
+    background-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem #dc35459c;
+}
+
+.ai_activate:focus{
+    background-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem #dc35459c;
+}
+
+.ai_activate:active{
+    background-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem #dc35459c;
+}
+
 
 .project_data__map__joystick{
 
@@ -106,4 +149,16 @@
 
 .project_data__map__joystick button{
     border: 2px solid rgb(255, 255, 255) !important;
+}
+
+.robot-speed{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.robot-position{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
 }
