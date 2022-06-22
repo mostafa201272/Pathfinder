@@ -84,7 +84,6 @@ const Project = () => {
 
         // Request to get Current Project Data
         (async () => {
-            setLoadingTable(true);
             await axios
                 .get(
                     `http://localhost:8000/maps/project/${id}/`,
@@ -92,7 +91,6 @@ const Project = () => {
                 )
                 .then((res) => {
                     setProjectData(res.data);
-                    console.log(res.data)
                     setRobotIP(res.data.robot.ip_address)
                 })
                 .catch((er) => {
@@ -174,6 +172,39 @@ const Project = () => {
     //     robotPosition(ros);
 
     // });
+
+    // [01] INSERT Project Data Into DB
+    // useEffect(() => {
+
+    //     // [01] INSERT DATA INTO DB
+    //     (async () => {
+    //         await axios
+    //             .post(
+    //                 `http://127.0.0.1:8000​/maps​/project​/${id}​/data​/poisonous​/`,
+    //                 { 
+    //                     x_position: robotXposition,
+    //                     y_position: robotYposition,
+    //                     angle: robotSpeed.angular,
+    //                     speed: robotSpeed.linear,
+    //                     temperature: tempSensorData,
+    //                     humidity: humidSensorData,
+    //                     gas_type: "0",
+    //                     gas_reading: "0",
+    //                     control_type: aiState? "AUtomatic": "Manual",
+    //                     project: id,
+    //                     //headers: { Authorization: `Token ${token}` } 
+    //                 }
+    //             )
+    //             .then((res) => {
+    //                 console.log(`Res: ${res}`)
+    //             })
+    //             .catch((er) => {
+    //                 console.log(er)
+    //             });
+    //     })();
+
+
+    // }, [robotXposition, robotYposition, tempSensorData, humidSensorData, aiState]);
 
 
     /*
@@ -413,13 +444,63 @@ const Project = () => {
         // [02] Stablish SOCKET Connection
         const sio = io(ENDPOINT);
 
-        // [03] 
+        // [03] Connection Case
+        sio.on("connect", () => {
 
+            // [01] Emit Temperature
+            sio.emit("TemperatureSensorData", (data) => {
+
+                // Set Temperature Value
+                setTempSensorData(data);
+
+                // Close Connection
+                sio.close()
+
+            });
+        });
+
+        // [04] Disconnect Case
+        sio.on("disconnect", () => {
+            
+            // Close Connection
+            sio.close()
+
+        });
 
     }
 
     // [ROS] Humidity Sensor Data
     const getHumiditySensorData = () => {
+
+        // [01] Set ENDPOINT [Robot IP  + Port]
+        const ENDPOINT = robotIP + ":5000";
+
+        // [02] Stablish SOCKET Connection
+        const sio = io(ENDPOINT);
+
+        // [03] Connection Case
+        sio.on("connect", () => {
+
+            // [01] Emit Humidity
+            sio.emit("HumiditySensorData", (data) => {
+
+                // Set Temperature Value
+                setHumidSensorData(data);
+
+                // Close Connection
+                sio.close()
+
+            });
+
+        });
+
+        // [04] Disconnect Case
+        sio.on("disconnect", () => {
+            
+            // Close Connection
+            sio.close()
+
+        });
 
     }
 
@@ -437,17 +518,15 @@ const Project = () => {
 
     }, 1000);
 
-    // [01] Refresh Mission Time
-    setInterval(() => {
+    // useEffect(() => {
 
-        // Temperature Sensors Data
-        getTemperatureSensorData();
+    //     // Temperature Sensor Data
+    //     getTemperatureSensorData();
 
-        // Humidity Sensors Data
-        getHumiditySensorData();
-            
+    //     // Humidity Sensor Data
+    //     getHumiditySensorData();
 
-    }, 10000);
+    // });
 
     /*
         =========================================================================
@@ -489,8 +568,8 @@ const Project = () => {
 
                                 {/* START SENSOR CHARTS */}
                                 <Col className="d-flex justify-content-between">
-                                    <ProjectSliders name={"Temperature"} value={tempSensorData} start={tempSensorData - 25} end={tempSensorData + 45} />
-                                    <ProjectSliders name={"Humidity"} value={humidSensorData} start={humidSensorData - 25} end={humidSensorData + 45} />
+                                    <ProjectSliders name={"Temperature"} value={tempSensorData} start={- 25} end={45} />
+                                    <ProjectSliders name={"Humidity"} value={humidSensorData} start={- 25} end={45} />
                                     <ProjectSliders name={"Gas"} value={10} start={0} end={70}/>
                                 </Col>
                                 {/* END SENSOR CHARTS */}
@@ -710,7 +789,7 @@ const Project = () => {
                                 </Button>
                                 {/* END AI BUTTON */}
                                 
-                                
+
                                 {/* JOY STICK */}
                                 <div className="project_data__map__joystick">
                                     <Joystick size={100} sticky={false} baseColor="#1d2e4c" stickColor="#0c1824" move={handleMove} stop={handleStop}></Joystick>
